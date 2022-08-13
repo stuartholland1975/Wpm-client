@@ -75,3 +75,25 @@ export const GET_PROJECT_ITEMS_AVAILABLE_FOR_APPLICATION = gql`
 		}
 	}
 `;
+
+export const GET_APPLICATION_HEADERS = gql `
+	query GetApplicationHeaders {
+		applicationSummaryWithCumulativeValues {
+			nodes {
+				id
+				applicationNumber
+				applicationReference
+				applicationDate
+				applicationCurrent
+				applicationOpen
+				applicationSubmitted
+				prevCumulativeApplicationValue
+				thisApplicationValue
+				cumulativeApplicationValue
+				itemCount
+				locationCount
+				imageCount
+			}
+		}
+	}
+`

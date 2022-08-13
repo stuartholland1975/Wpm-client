@@ -50,7 +50,7 @@ const processingItems = [
 	{
 		text: 'APPLICATIONS',
 		icon: <CurrencyPoundIcon color='contrasting' fontSize='large' />,
-		path: '/',
+		path: '/applications',
 	},
 	{
 		text: 'TEST',

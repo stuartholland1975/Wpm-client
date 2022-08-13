@@ -11,6 +11,7 @@ import ComponentTests from './test-components/ComponentTests';
 import DocumentAdmin from './components/admin/documents/DocumentAdmin';
 import Dashboard from './components/dashboard/Dashboard';
 import AdminRoutes from './components/admin/AdminRoutes';
+import Applications from "./components/applications/Applications";
 
 function App() {
 	let element = useRoutes([
@@ -43,6 +44,10 @@ function App() {
 					element: <ComponentTests />,
 					path: 'testing',
 				},
+				{
+					element: <Applications/>,
+					path:'applications'
+				}
 			],
 		},
 	]);

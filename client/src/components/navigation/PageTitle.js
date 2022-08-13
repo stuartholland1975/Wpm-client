@@ -22,7 +22,7 @@ const PageTitle = () => {
     } else if (routeMatch.pathname === '/projects') {
         text = 'PROJECT ORDER LISTING';
     } else if (routeMatch.pathname === '/applications') {
-        text = 'APPLICATION PROCESSING';
+        text = 'CONTRACT APPLICATIONS';
     } else if (routeMatch.pathname === '/dashboard') {
         text = 'CONTRACT DASHBOARD';
     } else if (routeMatch.pathname === '/analysis') {
