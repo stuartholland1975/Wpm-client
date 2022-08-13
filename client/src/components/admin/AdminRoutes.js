@@ -6,6 +6,7 @@ import React from 'react';
 import ProjectAdmin from './projects/ProjectAdmin';
 import DocumentAdmin from './documents/DocumentAdmin';
 import ImportProjectDetails from './projects/ImportProjectDetails';
+import ApplicationAdmin from "./applications/ApplicationAdmin";
 
 const AdminRoutes = () => {
 	return useRoutes([
@@ -23,6 +24,10 @@ const AdminRoutes = () => {
 			path: 'documents',
 			element: <DocumentAdmin />,
 		},
+		{
+			path: 'applications',
+			element: <ApplicationAdmin/>
+		}
 	]);
 };
 

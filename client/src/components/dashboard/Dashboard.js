@@ -1,8 +1,6 @@
 /** @format */
 import React from 'react';
-import { Box, Grid } from '@mui/material';
-import SelectArea from '../charts/components/SelectArea';
-import SelectPeriod from '../charts/components/SelectPeriod';
+import { Grid } from '@mui/material';
 import { useQuery } from '@apollo/client';
 import { GET_DASHBOARD_DATA } from '../../api-calls/queries/dashboard';
 import AreaValuesGrid from '../grids/grids/AreaValuesGrid';
@@ -33,7 +31,7 @@ function useDashboardFilters() {
 
 const Dashboard = () => {
 	const [rowData, setRowData] = React.useState({});
-	const { loading, error, refetch } = useQuery(GET_DASHBOARD_DATA, {
+	const { loading, error} = useQuery(GET_DASHBOARD_DATA, {
 		fetchPolicy: 'cache-and-network',
 		onCompleted: (data) => {
 			setRowData({
@@ -52,7 +50,7 @@ const Dashboard = () => {
 			});
 		},
 	});
-	const { operations, models } = useDashboardFilters();
+	//const { operations, models } = useDashboardFilters();
 
 	if (loading) return null;
 	if (error) console.log(error);

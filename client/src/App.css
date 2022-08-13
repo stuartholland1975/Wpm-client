@@ -53,6 +53,11 @@
 	--ag-range-selection-border-color: transparent;
 }
 
+.text-center * {
+	justify-content: center
+}
+
+
 .custom-ui {
 	background: #22415e;
 	width: 700px;

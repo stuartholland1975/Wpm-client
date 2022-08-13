@@ -18,8 +18,6 @@ const styles = StyleSheet.create({
 });
 
 const ProjectLocationPage = ({projectData}) => {
-	const {orderheaderWithValueById} = projectData;
-	const {projectTitle, orderNumber} = orderheaderWithValueById;
 	const {sitelocationWithValues} = projectData;
 
 	const locationData = sitelocationWithValues.nodes.map((item) => {

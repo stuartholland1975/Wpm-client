@@ -5,7 +5,6 @@ import CreateProjectHeader from './CreateProjectHeader';
 import DeleteProjectHeader from './DeleteProjectHeader';
 import EditProjectHeader from './EditProjectHeader';
 import React from 'react';
-import ImportProjectDetails from './ImportProjectDetails';
 import { useReactiveVar } from '@apollo/client';
 import { gridSelectionsVar } from '../../../cache';
 import { useNavigate } from 'react-router-dom';

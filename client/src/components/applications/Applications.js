@@ -1,9 +1,10 @@
 import React from 'react';
+import ApplicationsGrid from "../grids/grids/ApplicationsGrid";
 
 const Applications = () => {
   return (
     <div>
-      APPLICATIONS
+      <ApplicationsGrid/>
     </div>
   );
 };

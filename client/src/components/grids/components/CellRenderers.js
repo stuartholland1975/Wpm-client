@@ -5,13 +5,11 @@ import {useNavigate} from 'react-router-dom';
 import {gridSelectionsVar} from '../../../cache';
 
 export const GridButton = (props) => {
-	const {data} = props;
-	const navigate = useNavigate();
+  const {data, path, gridType} = props;
+  const navigate = useNavigate();
 
 	const buttonClicked = () => {
-		navigate({
-			pathname: `processing/${gridSelectionsVar().selectedOrder.id}`,
-		});
+		navigate({pathname: path})
 	};
 
 	function onButtonMouseOver() {
@@ -22,8 +20,9 @@ export const GridButton = (props) => {
 		<Button
 			sx={{borderRadius: 0, border: 0, m: 0}}
 			color='navigation'
-			onClick={() => buttonClicked()}
-			onMouseOver={onButtonMouseOver}>
+			onClick={() => buttonClicked(path)}
+		//	onMouseOver={onButtonMouseOver}
+				>
 			details
 		</Button>
 	);

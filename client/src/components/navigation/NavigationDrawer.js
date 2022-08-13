@@ -77,7 +77,7 @@ const adminItems = {
 		{
 			text: 'APPLICATIONS',
 			icon: <AppsIcon color='contrasting' fontSize='medium' />,
-			path: '/',
+			path: 'admin/applications',
 		},
 		{
 			text: 'DOCUMENTS',

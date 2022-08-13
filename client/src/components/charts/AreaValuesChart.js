@@ -1,7 +1,6 @@
 /** @format */
 
 import React from 'react';
-import * as agCharts from 'ag-charts-community';
 import { AgChartsReact } from 'ag-charts-react';
 
 const AreaValuesChart = ({ rowData }) => {
