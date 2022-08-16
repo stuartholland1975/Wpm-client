@@ -2,12 +2,14 @@ import React from 'react';
 import {Grid, Button} from "@mui/material";
 import DownloadIcon from '@mui/icons-material/Download';
 import CloseCurrentApplication from "./CloseCurrentApplication";
+import {ref} from "yup";
 
-const ApplicationAdminButtons = () => {
+const ApplicationAdminButtons = ({rowData, refetch, setRowData}) => {
+
   return (
     <Grid container spacing={2} mb={2} mt={1} columns={4}>
       <Grid item={true} xs={1}>
-        <CloseCurrentApplication/>
+        <CloseCurrentApplication rowData={rowData} refetch={refetch} setRowData={setRowData}/>
       </Grid>
       <Grid item={true} xs={1}>
         <Button

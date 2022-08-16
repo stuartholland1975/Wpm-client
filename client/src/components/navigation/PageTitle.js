@@ -53,6 +53,8 @@ const PageTitle = () => {
         text = 'PROJECT ADMINISTRATION';
     } else if (routeMatch.pathname === '/admin/documents') {
         text = 'GLOBAL DOCUMENT ADMINISTRATION';
+    }  else if (routeMatch.pathname === '/admin/applications') {
+        text = 'CONTRACT APPLICATION ADMINISTRATION'
     } else {
         text = 'WORK PACKAGE MANAGER';
     }

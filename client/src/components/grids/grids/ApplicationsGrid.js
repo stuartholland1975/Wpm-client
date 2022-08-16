@@ -2,21 +2,16 @@
 
 import React from 'react';
 import {AgGridReact} from 'ag-grid-react';
-import {useQuery} from '@apollo/client';
-import {GET_APPLICATION_HEADERS} from '../../../api-calls/queries/applications';
+
+
 import {formatDate, formatNumberGridNoDecimals} from '../../../functions/formattingFunctions';
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import {GridButton} from "../components/CellRenderers";
 
-const ApplicationsGrid = () => {
+const ApplicationsGrid = ({rowData}) => {
 
-  const [rowData, setRowData] = React.useState();
-  const {loading} = useQuery(GET_APPLICATION_HEADERS, {
-fetchPolicy:'network-only',
-    onCompleted: (data) =>
-      setRowData(data.applicationSummaryWithCumulativeValues.nodes),
-  });
+  const gridRef = React.useRef()
 
   const columnDefs = React.useMemo(
     () => [
@@ -55,7 +50,7 @@ fetchPolicy:'network-only',
         valueFormatter: formatNumberGridNoDecimals,
         type: 'numericColumn',
         filter: 'agNumberColumnFilter',
-      },{
+      }, {
         field: 'locationCount',
         valueFormatter: formatNumberGridNoDecimals,
         type: 'numericColumn',
@@ -67,20 +62,26 @@ fetchPolicy:'network-only',
         type: 'numericColumn',
         filter: 'agNumberColumnFilter',
       },
-      {field: 'applicationSubmitted',
+      {
+        field: 'applicationSubmitted',
         headerClass: 'text-center',
         cellRenderer: params => {
-          return params.data.applicationSubmitted === true ? <div style={{textAlign:"center", marginTop:5}}><DoneIcon color='submit'/></div> :<div style={{textAlign:"center",marginTop:5}}><ClearIcon color='error'/></div>
-        }
-      },
-      {field: 'applicationOpen',
-        headerClass: 'text-center',
-        cellRenderer: params => {
-          return params.data.applicationSubmitted === true ? <div style={{textAlign:"center", marginTop:5}}><DoneIcon color='submit'/></div> :<div style={{textAlign:"center",marginTop:5}}><ClearIcon color='error'/></div>
+          return params.data.applicationSubmitted === true ?
+            <div style={{textAlign: "center", marginTop: 5}}><DoneIcon color='submit'/></div> :
+            <div style={{textAlign: "center", marginTop: 5}}><ClearIcon color='error'/></div>
         }
       },
       {
-        colId: 'selectButton', cellRenderer: GridButton, flex: 1.5, cellRendererParams: params => ( {
+        field: 'applicationOpen',
+        headerClass: 'text-center',
+        cellRenderer: params => {
+          return params.data.applicationSubmitted === true ?
+            <div style={{textAlign: "center", marginTop: 5}}><DoneIcon color='submit'/></div> :
+            <div style={{textAlign: "center", marginTop: 5}}><ClearIcon color='error'/></div>
+        }
+      },
+      {
+        colId: 'selectButton', cellRenderer: GridButton, flex: 1.5, cellRendererParams: params => ({
           path: params.data.id.toString()
         })
 
@@ -105,10 +106,12 @@ fetchPolicy:'network-only',
       },
     };
   }, []);
-  if (loading) return null;
+
+
   return (
     <AgGridReact
       className='ag-theme-alpine'
+      ref={gridRef}
       animateRows='true'
       columnDefs={columnDefs}
       defaultColDef={defaultColDef}

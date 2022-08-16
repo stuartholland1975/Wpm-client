@@ -94,6 +94,7 @@ export const GET_APPLICATION_HEADERS = gql`
                 locationCount
                 imageCount
                 orderCount
+                areaCount
             }
         }
     }

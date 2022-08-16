@@ -1,12 +1,23 @@
 import React from 'react';
 import ApplicationAdminButtons from "./ApplicationAdminButtons";
 import ApplicationsGrid from "../../grids/grids/ApplicationsGrid";
+import {useQuery} from '@apollo/client';
+import {GET_APPLICATION_HEADERS} from '../../../api-calls/queries/applications';
 
 const ApplicationAdmin = () => {
+  const [rowData, setRowData] = React.useState([]);
+  const {loading, refetch} = useQuery(GET_APPLICATION_HEADERS, {
+    fetchPolicy:'network-only',
+    notifyOnNetworkStatusChange:true,
+    onCompleted: data => setRowData(data.applicationSummaryWithCumulativeValues.nodes)
+  });
+
+  console.log(Math.random())
+  if (loading) return null;
   return (
     <div>
-      <ApplicationAdminButtons/>
-      <ApplicationsGrid/>
+      <ApplicationAdminButtons rowData={rowData} setRowData={setRowData} refetch={refetch}/>
+      <ApplicationsGrid rowData={rowData}/>
     </div>
   );
 };

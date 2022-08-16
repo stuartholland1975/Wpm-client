@@ -1,39 +1,43 @@
-import React, {useId} from 'react';
+import React from 'react';
 import {Button} from "@mui/material";
-import {confirmAlert} from "react-confirm-alert";
-import {useMutation, useApolloClient, gql, useQuery} from "@apollo/client";
-import {GET_CURRENT_APPLICATION,GET_APPLICATION_HEADERS} from "../../../api-calls/queries/applications";
-import {CLOSE_CURRENT_APPLICATION} from "../../../api-calls/mutations/application-mutations";
+import {useMutation} from "@apollo/client";
+import {
+  AUTO_INCREMENT_APPLICATION,
+  CLOSE_CURRENT_APPLICATION
+} from "../../../api-calls/mutations/application-mutations";
 import {useConfirm} from "material-ui-confirm";
+import { v4 as uuidv4 } from 'uuid';
 
-const CloseCurrentApplication = () => {
-  const client = useApolloClient()
-  const finalisationId = useId()
+function findCurrentApplication(app) {
+  return app.applicationCurrent === true
+}
+
+const CloseCurrentApplication = ({rowData, refetch, setRowData}) => {
+
+  const finalisationId = uuidv4()
   const confirm = useConfirm()
-  const [closeApp] = useMutation(CLOSE_CURRENT_APPLICATION);
+  // const [closeApp] = useMutation(CLOSE_CURRENT_APPLICATION);
+  const [closeApp] = useMutation(AUTO_INCREMENT_APPLICATION);
 
-  const {data} = useQuery(GET_CURRENT_APPLICATION);
-
-
-  console.log(data)
+  const currentApp = rowData.find(app => findCurrentApplication(app))
 
   const handleCloseApplication = () => {
     confirm({
       title: 'Confirm Close Application',
       titleProps: {color: 'red', fontWeight: 'bold'},
-
-     description: `Are You Sure You Want To Close ${data.applications.nodes[0].applicationReference} ?`,
+      description: `Are You Sure You Want To Close ${currentApp.applicationReference} ?`,
       confirmationText: 'Update Application',
       cancellationButtonProps: {color: 'secondary'},
       confirmationButtonProps: {autoFocus: true, color: 'update'},
       allowClose: false,
     }).then(() => closeApp({
       variables: {
-        ref: finalisationId,
-        dt: new Date(),
-        id:data.applications.nodes[0].id
+        // ref: finalisationId,
+        // dt: new Date(),
+        // id: currentApp.id
+        currentApp: currentApp.id
       }
-    }))
+    })).then(() => refetch()).then(r => setRowData(r.data.applicationSummaryWithCumulativeValues.nodes))
   };
 
   return (

@@ -7318,15 +7318,20 @@ type AreasEdge {
     node: Area
 }
 
-"The output of our `authenticate` mutation."
-type AuthenticatePayload {
+"The output of our `autoCloseCurrentApplication` mutation."
+type AutoCloseCurrentApplicationPayload {
+    application: Application
+    "An edge for our `Application`. May be used by Relay 1."
+    applicationEdge(
+        "The method to use when ordering `Application`."
+        orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
+    ): ApplicationsEdge
     """
 
     The exact same `clientMutationId` that was provided in the mutation input,
     unchanged and unused. May be used by a client to track mutations.
     """
     clientMutationId: String
-    jwtToken: JwtToken
     "Our root query field type. Allows us to run any query from our mutation payload."
     query: Query
 }
@@ -7334,18 +7339,6 @@ type AuthenticatePayload {
 "The output of our `calculateItemValue` mutation."
 type CalculateItemValuePayload {
     bigFloat: BigFloat
-    """
-
-    The exact same `clientMutationId` that was provided in the mutation input,
-    unchanged and unused. May be used by a client to track mutations.
-    """
-    clientMutationId: String
-    "Our root query field type. Allows us to run any query from our mutation payload."
-    query: Query
-}
-
-"The output of our `colpivot` mutation."
-type ColpivotPayload {
     """
 
     The exact same `clientMutationId` that was provided in the mutation input,
@@ -8823,24 +8816,6 @@ type DocumentsEdge {
     node: Document
 }
 
-"A `String` edge in the connection."
-type GetMissingActivityCodeEdge {
-    "A cursor for use in pagination."
-    cursor: Cursor
-    "The `String` at the end of the edge."
-    node: String
-}
-
-"A connection to a list of `String` values."
-type GetMissingActivityCodesConnection {
-    "A list of edges which contains the `String` and cursor to aid in pagination."
-    edges: [GetMissingActivityCodeEdge!]!
-    "A list of `String` objects."
-    nodes: [String]!
-    "The count of *all* `String` you could get from the connection."
-    totalCount: Int!
-}
-
 type Image implements Node {
     "Reads and enables pagination through a set of `ApplicationImageDetail`."
     applicationImageDetails(
@@ -9993,16 +9968,6 @@ type ItemTypesEdge {
     node: ItemType
 }
 
-type JwtToken {
-    email: String
-    forename: String
-    id: Int
-    password: String
-    surname: String
-    token: String
-    userName: String
-}
-
 type MatWorksheetWithValue {
     activityCode: String
     activityDescription: String
@@ -10398,18 +10363,14 @@ type Mutation {
         "The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields."
         input: AddWorksheetsToApplicationInput!
     ): AddWorksheetsToApplicationPayload
-    authenticate(
+    autoCloseCurrentApplication(
         "The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields."
-        input: AuthenticateInput!
-    ): AuthenticatePayload
+        input: AutoCloseCurrentApplicationInput!
+    ): AutoCloseCurrentApplicationPayload
     calculateItemValue(
         "The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields."
         input: CalculateItemValueInput!
     ): CalculateItemValuePayload
-    colpivot(
-        "The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields."
-        input: ColpivotInput!
-    ): ColpivotPayload
     "Creates a single `Activitycode`."
     createActivitycode(
         "The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields."
@@ -20804,7 +20765,6 @@ type PricesWithUpliftsEdge {
 
 "The root query type which gives access points into the data universe."
 type Query implements Node {
-    activityCodeCheck(activityCheck: [String]): Boolean
     activitycode(id: Int!): Activitycode
     "Reads a single `Activitycode` using its globally unique `ID`."
     activitycodeByNodeId(
@@ -21381,87 +21341,6 @@ type Query implements Node {
         """
         offset: Int
     ): ActivitycodesConnection
-    "Reads and enables pagination through a set of `Orderdetail`."
-    getDuplicatedItems(
-        "Read all values in the set after (below) this cursor."
-        after: Cursor,
-        "Read all values in the set before (above) this cursor."
-        before: Cursor,
-        "A filter to be used in determining which values should be returned by the collection."
-        filter: OrderdetailFilter,
-        "Only read the first `n` values of the set."
-        first: Int,
-        items: [Int],
-        "Only read the last `n` values of the set."
-        last: Int,
-        """
-
-        Skip the first `n` values from our `after` cursor, an alternative to cursor
-        based pagination. May not be used with `last`.
-        """
-        offset: Int,
-        orderId: Int
-    ): OrderdetailsConnection
-    "Reads and enables pagination through a set of `Sitelocation`."
-    getDuplicatedReferences(
-        "Read all values in the set after (below) this cursor."
-        after: Cursor,
-        "Read all values in the set before (above) this cursor."
-        before: Cursor,
-        "A filter to be used in determining which values should be returned by the collection."
-        filter: SitelocationFilter,
-        "Only read the first `n` values of the set."
-        first: Int,
-        "Only read the last `n` values of the set."
-        last: Int,
-        locationRefs: [String],
-        """
-
-        Skip the first `n` values from our `after` cursor, an alternative to cursor
-        based pagination. May not be used with `last`.
-        """
-        offset: Int,
-        orderId: Int
-    ): SitelocationsConnection
-    getMissingActivityCodes(
-        activities: [String],
-        "Read all values in the set after (below) this cursor."
-        after: Cursor,
-        "Read all values in the set before (above) this cursor."
-        before: Cursor,
-        "A filter to be used in determining which values should be returned by the collection."
-        filter: StringFilter,
-        "Only read the first `n` values of the set."
-        first: Int,
-        "Only read the last `n` values of the set."
-        last: Int,
-        """
-
-        Skip the first `n` values from our `after` cursor, an alternative to cursor
-        based pagination. May not be used with `last`.
-        """
-        offset: Int
-    ): GetMissingActivityCodesConnection
-    "Reads and enables pagination through a set of `RatesetPriceCheck`."
-    getMissingPrices(
-        "Read all values in the set after (below) this cursor."
-        after: Cursor,
-        "Read all values in the set before (above) this cursor."
-        before: Cursor,
-        "A filter to be used in determining which values should be returned by the collection."
-        filter: RatesetPriceCheckFilter,
-        "Only read the first `n` values of the set."
-        first: Int,
-        "Only read the last `n` values of the set."
-        last: Int,
-        """
-
-        Skip the first `n` values from our `after` cursor, an alternative to cursor
-        based pagination. May not be used with `last`.
-        """
-        offset: Int,
-        prices: [RatesetPriceCheckInput]
-    ): RatesetPriceChecksConnection
     image(id: Int!): Image
     "Reads a single `Image` using its globally unique `ID`."
     imageByNodeId(
@@ -22170,26 +22049,6 @@ type Query implements Node {
         "The method to use when ordering `PricesWithUplift`."
         orderBy: [PricesWithUpliftsOrderBy!] = [NATURAL]
     ): PricesWithUpliftsConnection
-    "Reads and enables pagination through a set of `PricesWithUplift`."
-    projectImportDataValidation(
-        "Read all values in the set after (below) this cursor."
-        after: Cursor,
-        "Read all values in the set before (above) this cursor."
-        before: Cursor,
-        "A filter to be used in determining which values should be returned by the collection."
-        filter: PricesWithUpliftFilter,
-        "Only read the first `n` values of the set."
-        first: Int,
-        "Only read the last `n` values of the set."
-        last: Int,
-        """
-
-        Skip the first `n` values from our `after` cursor, an alternative to cursor
-        based pagination. May not be used with `last`.
-        """
-        offset: Int,
-        projectData: [PricesWithUpliftInput]
-    ): PricesWithUpliftsConnection
     """
 
     Exposes the root query type nested one level down. This is helpful for Relay 1
@@ -22448,32 +22307,7 @@ type Query implements Node {
         "The method to use when ordering `SupervisorsWithValue`."
         orderBy: [SupervisorsWithValuesOrderBy!] = [NATURAL]
     ): SupervisorsWithValuesConnection
-    validateActivities(activities: [String]): Boolean
-    validateItems(items: [Int], orderId: Int): Boolean
-    validatePrices(prices: [PricesWithUpliftInput]): Boolean
-    validatePricesTest(priceRecords: [PricesWithUpliftInput]): ValidatePricesTestRecord
     validateProjectImportData(importData: ProjectImportValidationDatumInput, orderId: Int): ValidateProjectImportDataRecord
-    "Reads and enables pagination through a set of `PricesWithUplift`."
-    validateRates(
-        "Read all values in the set after (below) this cursor."
-        after: Cursor,
-        "Read all values in the set before (above) this cursor."
-        before: Cursor,
-        "A filter to be used in determining which values should be returned by the collection."
-        filter: PricesWithUpliftFilter,
-        "Only read the first `n` values of the set."
-        first: Int,
-        "Only read the last `n` values of the set."
-        last: Int,
-        """
-
-        Skip the first `n` values from our `after` cursor, an alternative to cursor
-        based pagination. May not be used with `last`.
-        """
-        offset: Int,
-        rates: [PricesWithUpliftInput]
-    ): PricesWithUpliftsConnection
-    validateReferences(orderId: Int, refs: [String]): Boolean
     "Reads and enables pagination through a set of `WorkAppliedByAreaAndApplication`."
     workAppliedByAreaAndApplications(
         "Read all values in the set after (below) this cursor."
@@ -23214,31 +23048,6 @@ type RatesetPriceAverageAggregates {
     unitBaseLabour: BigFloat
     "Mean average of unitBaseOther across the matching connection"
     unitBaseOther: BigFloat
-}
-
-type RatesetPriceCheck {
-    activity: String
-    rateset: Int
-}
-
-"A connection to a list of `RatesetPriceCheck` values."
-type RatesetPriceChecksConnection {
-    "A list of edges which contains the `RatesetPriceCheck` and cursor to aid in pagination."
-    edges: [RatesetPriceChecksEdge!]!
-    "A list of `RatesetPriceCheck` objects."
-    nodes: [RatesetPriceCheck]!
-    "Information to aid in pagination."
-    pageInfo: PageInfo!
-    "The count of *all* `RatesetPriceCheck` you could get from the connection."
-    totalCount: Int!
-}
-
-"A `RatesetPriceCheck` edge in the connection."
-type RatesetPriceChecksEdge {
-    "A cursor for use in pagination."
-    cursor: Cursor
-    "The `RatesetPriceCheck` at the end of the edge."
-    node: RatesetPriceCheck
 }
 
 type RatesetPriceDistinctCountAggregates {
@@ -27215,12 +27024,6 @@ type UpdateWorktypePayload {
         "The method to use when ordering `Worktype`."
         orderBy: [WorktypesOrderBy!] = [PRIMARY_KEY_ASC]
     ): WorktypesEdge
-}
-
-"The return type of our `validatePricesTest` query."
-type ValidatePricesTestRecord {
-    dataValid: Boolean
-    existingPrices: PricesWithUplift
 }
 
 "The return type of our `validateProjectImportData` query."
@@ -60400,16 +60203,14 @@ input AreaWithValuesOldHavingVarianceSampleInput {
     valueComplete: HavingBigfloatFilter
 }
 
-"All input for the `authenticate` mutation."
-input AuthenticateInput {
+"All input for the `autoCloseCurrentApplication` mutation."
+input AutoCloseCurrentApplicationInput {
     """
 
     An arbitrary string value with no semantic meaning. Will be included in the
     payload verbatim. May be used to track mutations by the client.
     """
     clientMutationId: String
-    password: String!
-    username: String!
 }
 
 "A filter to be used against BigFloat fields. All fields are combined with a logical ‘and.’"
@@ -60501,22 +60302,6 @@ input CalculateItemValueInput {
     materialsValue: BigFloat
     priceId: Int
     qtyOrdered: BigFloat
-}
-
-"All input for the `colpivot` mutation."
-input ColpivotInput {
-    classCols: [String]
-    """
-
-    An arbitrary string value with no semantic meaning. Will be included in the
-    payload verbatim. May be used to track mutations by the client.
-    """
-    clientMutationId: String
-    colOrder: String
-    inQuery: String
-    keyCols: [String]
-    outTable: String
-    valueE: String
 }
 
 """
@@ -68398,25 +68183,6 @@ input PricesWithUpliftFilter {
     unitUpliftTotalPayable: BigFloatFilter
 }
 
-"An input for mutations affecting `PricesWithUplift`"
-input PricesWithUpliftInput {
-    activityCode: String
-    activityDescription: String
-    id: Int
-    materialsInclUpliftPercentage: BigFloat
-    materialsUpliftPercentage: BigFloat
-    ratesetHeaderId: Int
-    unitBaseLabour: BigFloat
-    unitBaseOther: BigFloat
-    unitBaseTotalPayable: BigFloat
-    unitLabourPayable: BigFloat
-    unitLabourUplift: BigFloat
-    unitOtherPayable: BigFloat
-    unitOtherUplift: BigFloat
-    unitTotalPayable: BigFloat
-    unitUpliftTotalPayable: BigFloat
-}
-
 input PricesWithUpliftsHavingAverageInput {
     id: HavingIntFilter
     materialsInclUpliftPercentage: HavingBigfloatFilter
@@ -68810,20 +68576,6 @@ input RatesetPriceAverageAggregateFilter {
     ratesetHeaderId: BigFloatFilter
     unitBaseLabour: BigFloatFilter
     unitBaseOther: BigFloatFilter
-}
-
-"A filter to be used against `RatesetPriceCheck` object types. All fields are combined with a logical ‘and.’"
-input RatesetPriceCheckFilter {
-    "Filter by the object’s `activity` field."
-    activity: StringFilter
-    "Checks for all expressions in this list."
-    and: [RatesetPriceCheckFilter!]
-    "Negates the expression."
-    not: RatesetPriceCheckFilter
-    "Checks for any expressions in this list."
-    or: [RatesetPriceCheckFilter!]
-    "Filter by the object’s `rateset` field."
-    rateset: IntFilter
 }
 
 "An input for mutations affecting `RatesetPriceCheck`"

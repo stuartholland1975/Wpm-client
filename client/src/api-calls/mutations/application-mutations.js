@@ -13,8 +13,18 @@ export const CLOSE_CURRENT_APPLICATION = gql`
                 id: $id
             }
         ) {
-            query {
-                applicationSummaryWithCumulativeValues {
+            clientMutationId
+        }
+    }
+`;
+
+export const AUTO_INCREMENT_APPLICATION = gql`
+    mutation AutoIncrementApplication($current_app:Int!) {
+        autoCloseCurrentApplication(input: {}) {
+            application {
+                applicationSummaryWithCumulativeValuesById(
+                    filter: {id: {equalTo: $current_app}, or: {applicationCurrent: {equalTo: true}}}
+                ) {
                     nodes {
                         id
                         applicationNumber
@@ -30,10 +40,21 @@ export const CLOSE_CURRENT_APPLICATION = gql`
                         locationCount
                         imageCount
                         orderCount
+                        areaCount
                     }
                 }
             }
         }
     }
-`;
 
+`
+
+export const REMOVE_APPLICATION_SUBMISSION_FLAG = gql`
+    mutation RemoveApplicationSubmissionFlag($id: Int!) {
+        updateApplication(
+            input: { patch: { applicationSubmitted: false }, id: $id }
+        ) {
+            clientMutationId
+        }
+    }
+`;
