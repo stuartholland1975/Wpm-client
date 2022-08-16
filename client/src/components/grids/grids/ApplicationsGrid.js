@@ -84,6 +84,15 @@ const ApplicationsGrid = ({rowData}) => {
         }
       },
       {
+        field: 'applicationCurrent',
+        headerClass: 'text-center',
+        cellRenderer: params => {
+          return params.data.applicationCurrent === true ?
+            <div style={{textAlign: "center", marginTop: 5}}><DoneIcon color='submit'/></div> :
+            <div style={{textAlign: "center", marginTop: 5}}><ClearIcon color='error'/></div>
+        }
+      },
+      {
         colId: 'selectButton', cellRenderer: GridButton, flex: 1.5, cellRendererParams: params => ({
           path: params.data.id.toString()
         })
