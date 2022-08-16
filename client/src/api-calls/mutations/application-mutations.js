@@ -59,3 +59,29 @@ export const REMOVE_APPLICATION_SUBMISSION_FLAG = gql`
         }
     }
 `;
+
+export const SUBMIT_APPLICATION = gql`
+    mutation SubmitApplication($appNumber:Int!) {
+        submitApplication(input: {appNumber: $appNumber}) {
+            applicationSummaryWithCumulativeValues {
+                id
+                applicationNumber
+                applicationReference
+                applicationDate
+                applicationCurrent
+                applicationOpen
+                applicationSubmitted
+                prevCumulativeApplicationValue
+                thisApplicationValue
+                cumulativeApplicationValue
+                itemCount
+                locationCount
+                imageCount
+                orderCount
+                areaCount
+            }
+        }
+    }
+
+`;
+
