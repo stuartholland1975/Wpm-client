@@ -3,13 +3,17 @@ import {Grid, Button} from "@mui/material";
 import DownloadIcon from '@mui/icons-material/Download';
 import CloseCurrentApplication from "./CloseCurrentApplication";
 import {ref} from "yup";
+import ReOpenClosedApplication from "./ReOpenClosedApplication";
 
-const ApplicationAdminButtons = ({rowData, refetch, setRowData}) => {
+const ApplicationAdminButtons = ({rowData, setRowData}) => {
 
   return (
-    <Grid container spacing={2} mb={2} mt={1} columns={4}>
+    <Grid container spacing={2} mb={2} mt={1} columns={5}>
       <Grid item={true} xs={1}>
-        <CloseCurrentApplication rowData={rowData} refetch={refetch} setRowData={setRowData}/>
+        <CloseCurrentApplication rowData={rowData} setRowData={setRowData} />
+      </Grid>
+      <Grid item={true} xs={1}>
+        <ReOpenClosedApplication rowData={rowData}/>
       </Grid>
       <Grid item={true} xs={1}>
         <Button

@@ -12,7 +12,6 @@ const ApplicationAdmin = () => {
     onCompleted: data => setRowData(data.applicationSummaryWithCumulativeValues.nodes)
   });
 
-  console.log(Math.random())
   if (loading) return null;
   return (
     <div>

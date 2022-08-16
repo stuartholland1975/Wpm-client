@@ -2,14 +2,16 @@
 
 import React from 'react';
 import {AgGridReact} from 'ag-grid-react';
-
-
 import {formatDate, formatNumberGridNoDecimals} from '../../../functions/formattingFunctions';
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import {GridButton} from "../components/CellRenderers";
+import {useLocation} from "react-router-dom";
+import {gridSelectionsVar} from "../../../cache";
 
 const ApplicationsGrid = ({rowData}) => {
+
+  const location = useLocation()
 
   const gridRef = React.useRef()
 
@@ -18,6 +20,7 @@ const ApplicationsGrid = ({rowData}) => {
       {
         field: 'applicationNumber',
         sort: 'desc',
+        checkboxSelection: () => location.pathname === '/admin/applications',
       },
       {
         field: 'applicationReference',
@@ -108,10 +111,22 @@ const ApplicationsGrid = ({rowData}) => {
   }, []);
 
 
+    const onSelectionChanged = React.useCallback(() => {
+      const selectedRow = gridRef.current.api.getSelectedRows();
+      selectedRow.length === 0
+        ? gridSelectionsVar({...gridSelectionsVar(), selectedApplication: false})
+        : gridSelectionsVar({
+          ...gridSelectionsVar(),
+          selectedApplication: selectedRow,
+        });
+    }, []);
+
+
   return (
     <AgGridReact
       className='ag-theme-alpine'
       ref={gridRef}
+      rowSelection='single'
       animateRows='true'
       columnDefs={columnDefs}
       defaultColDef={defaultColDef}
@@ -121,6 +136,7 @@ const ApplicationsGrid = ({rowData}) => {
       paginationPageSize={10}
       suppressRowClickSelection={true}
       rowClassRules={rowClassRules}
+      onSelectionChanged={onSelectionChanged}
     />
   );
 };

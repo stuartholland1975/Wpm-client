@@ -146,8 +146,6 @@ const ProjectHeaderGrid = () => {
       });
   }, []);
 
-  //if (loading) return <CircularProgress />;
-
   return (
     <AgGridReact
       className='ag-theme-alpine'

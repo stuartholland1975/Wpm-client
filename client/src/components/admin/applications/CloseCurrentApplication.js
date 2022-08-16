@@ -2,24 +2,34 @@ import React from 'react';
 import {Button} from "@mui/material";
 import {useMutation} from "@apollo/client";
 import {
-  AUTO_INCREMENT_APPLICATION,
-  CLOSE_CURRENT_APPLICATION
+  AUTO_INCREMENT_APPLICATION
 } from "../../../api-calls/mutations/application-mutations";
 import {useConfirm} from "material-ui-confirm";
-import { v4 as uuidv4 } from 'uuid';
+import {gridSelectionsVar} from "../../../cache";
 
 function findCurrentApplication(app) {
   return app.applicationCurrent === true
 }
 
-const CloseCurrentApplication = ({rowData, refetch, setRowData}) => {
+function findHighestAppNumber(apps) {
+  return Math.max(...apps.map(o => o.applicationNumber))
+}
 
-  const finalisationId = uuidv4()
+const CloseCurrentApplication = ({rowData,setRowData}) => {
+
   const confirm = useConfirm()
-  // const [closeApp] = useMutation(CLOSE_CURRENT_APPLICATION);
-  const [closeApp] = useMutation(AUTO_INCREMENT_APPLICATION);
 
-  const currentApp = rowData.find(app => findCurrentApplication(app))
+  const [closeApp] = useMutation(AUTO_INCREMENT_APPLICATION,{
+    fetchPolicy: 'network-only',
+    onCompleted:(data) => {
+      setRowData(data.autoCloseCurrentApplication.applicationSummaryWithCumulativeValues)
+      gridSelectionsVar({...gridSelectionsVar(), selectedApplication: false})
+    }
+  });
+
+  const currentApp = rowData?.find(app => findCurrentApplication(app)) ? rowData?.find(app => findCurrentApplication(app)):false
+
+  const latestApp = findHighestAppNumber(rowData)
 
   const handleCloseApplication = () => {
     confirm({
@@ -30,22 +40,16 @@ const CloseCurrentApplication = ({rowData, refetch, setRowData}) => {
       cancellationButtonProps: {color: 'secondary'},
       confirmationButtonProps: {autoFocus: true, color: 'update'},
       allowClose: false,
-    }).then(() => closeApp({
-      variables: {
-        // ref: finalisationId,
-        // dt: new Date(),
-        // id: currentApp.id
-        currentApp: currentApp.id
-      }
-    })).then(() => refetch()).then(r => setRowData(r.data.applicationSummaryWithCumulativeValues.nodes))
+    }).then(() => closeApp())
   };
 
   return (
     <Button
+      disabled={currentApp.applicationNumber !== latestApp}
       onClick={handleCloseApplication}
       color='action'
       fullWidth={true}>
-      close current application
+      increment application
     </Button>
   );
 };
