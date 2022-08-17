@@ -49,6 +49,12 @@ const ApplicationsGrid = ({rowData}) => {
         filter: 'agNumberColumnFilter',
       },
       {
+        field: 'areaCount',
+        valueFormatter: formatNumberGridNoDecimals,
+        type: 'numericColumn',
+        filter: 'agNumberColumnFilter',
+      },
+      {
         field: 'orderCount',
         valueFormatter: formatNumberGridNoDecimals,
         type: 'numericColumn',
@@ -78,7 +84,7 @@ const ApplicationsGrid = ({rowData}) => {
         field: 'applicationOpen',
         headerClass: 'text-center',
         cellRenderer: params => {
-          return params.data.applicationSubmitted === true ?
+          return params.data.applicationOpen === true ?
             <div style={{textAlign: "center", marginTop: 5}}><DoneIcon color='submit'/></div> :
             <div style={{textAlign: "center", marginTop: 5}}><ClearIcon color='error'/></div>
         }
@@ -92,12 +98,12 @@ const ApplicationsGrid = ({rowData}) => {
             <div style={{textAlign: "center", marginTop: 5}}><ClearIcon color='error'/></div>
         }
       },
-      {
+      /*{
         colId: 'selectButton', cellRenderer: GridButton, flex: 1.5, cellRendererParams: params => ({
           path: params.data.id.toString()
         })
 
-      },
+      },*/
     ],
     [],
   );

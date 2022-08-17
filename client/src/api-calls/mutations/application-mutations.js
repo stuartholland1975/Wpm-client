@@ -80,6 +80,20 @@ export const SUBMIT_APPLICATION = gql`
                 orderCount
                 areaCount
             }
+            query {
+                submittedApplicationByApplicationId(applicationId: $appNumber) {
+                    applicationHeader
+                    applicationId
+                    areas
+                    id
+                    images
+                    orderdetails
+                    orderheaders
+                    otherInfo
+                    sitelocations
+                    worksheets
+                }
+            }
         }
     }
 

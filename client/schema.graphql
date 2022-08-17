@@ -10858,6 +10858,10 @@ type Mutation {
         "The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields."
         input: SitelocationCreateBulkLocationsInput!
     ): SitelocationCreateBulkLocationsPayload
+    submitApplication(
+        "The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields."
+        input: SubmitApplicationInput!
+    ): SubmitApplicationPayload
     "Updates a single `Activitycode` using a unique key and a patch."
     updateActivitycode(
         "The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields."
@@ -25562,6 +25566,19 @@ type SitelocationsEdge {
     cursor: Cursor
     "The `Sitelocation` at the end of the edge."
     node: Sitelocation
+}
+
+"The output of our `submitApplication` mutation."
+type SubmitApplicationPayload {
+    applicationSummaryWithCumulativeValues: [ApplicationSummaryWithCumulativeValue]
+    """
+
+    The exact same `clientMutationId` that was provided in the mutation input,
+    unchanged and unused. May be used by a client to track mutations.
+    """
+    clientMutationId: String
+    "Our root query field type. Allows us to run any query from our mutation payload."
+    query: Query
 }
 
 type SubmittedApplication implements Node {
@@ -69673,6 +69690,17 @@ input StringFilter {
     startsWith: String
     "Starts with the specified string (case-insensitive)."
     startsWithInsensitive: String
+}
+
+"All input for the `submitApplication` mutation."
+input SubmitApplicationInput {
+    appNumber: Int
+    """
+
+    An arbitrary string value with no semantic meaning. Will be included in the
+    payload verbatim. May be used to track mutations by the client.
+    """
+    clientMutationId: String
 }
 
 """
