@@ -1,8 +1,7 @@
 import React from 'react';
-import {Grid, Button} from "@mui/material";
+import {Button, Grid} from "@mui/material";
 import DownloadIcon from '@mui/icons-material/Download';
 import CloseCurrentApplication from "./CloseCurrentApplication";
-import {ref} from "yup";
 import ReOpenClosedApplication from "./ReOpenClosedApplication";
 import SubmitApplication from "./SubmitApplication";
 import {useReactiveVar} from "@apollo/client";
@@ -24,11 +23,7 @@ const ApplicationAdminButtons = ({rowData, setRowData}) => {
       <Grid item={true} xs={1}>
         <Button
           disabled={true}
-          /*disabled={
-            selectedApplication === false ||
-            selectedApplication?.applicationSubmitted === false
-          }
-          onClick={handleReverseSubmitApplication}*/
+         
           fullWidth={true}
           color='action'>
           remove submission flag
