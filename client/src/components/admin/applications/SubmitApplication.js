@@ -20,6 +20,17 @@ const SubmitApplication = ({rowData}) => {
     }
   })
 
+  const postSubmission = (data) => {
+    confirm({
+      title: error ? 'Submission Failed' : 'Application Submitted!',
+      titleProps: {color: 'red', fontWeight: 'bold'},
+      cancellationButtonProps: {color: 'secondary'},
+      confirmationButtonProps: {autoFocus: true, color: 'update'},
+      confirmationText: 'VIEW SUBMISSION DATA',
+      allowClose: false,
+    }).then((res) => console.log(res, submissionData, 'data', data)).catch(console.log)
+  }
+
   const handleSubmitApp = () => {
     confirm({
       title: 'Confirm Submit Application',
@@ -29,17 +40,11 @@ const SubmitApplication = ({rowData}) => {
       cancellationButtonProps: {color: 'secondary'},
       confirmationButtonProps: {autoFocus: true, color: 'update'},
       allowClose: false,
-    }).then(() => submitApp({variables: {appNumber: selectedApplication[0].id}})).then((r) => {
-      setSubmissionData(r.data.submitApplication.query.submittedApplicationByApplicationId);
-      confirm({
-        title: error ? 'Submission Failed' : 'Application Submitted!',
-        titleProps: {color: 'red', fontWeight: 'bold'},
-        cancellationButtonProps: {color: 'secondary'},
-        confirmationButtonProps: {autoFocus: true, color: 'update'},
-        confirmationText: 'VIEW SUBMISSION DATA',
-        allowClose: false,
-      }).then(r => console.log(r))
-    }).catch(error => console.log(error))
+    }).then(() => submitApp({variables: {appNumber: selectedApplication[0].id}}))
+      .then((r) => {
+        setSubmissionData(r.data.submitApplication.query.submittedApplicationByApplicationId);
+        postSubmission(r)
+      }).catch((err) => console.log(err))
   }
 
   return (
