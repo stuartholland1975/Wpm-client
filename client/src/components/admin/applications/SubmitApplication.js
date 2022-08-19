@@ -4,6 +4,7 @@ import {Button} from "@mui/material";
 import {SUBMIT_APPLICATION} from "../../../api-calls/mutations/application-mutations";
 import {gridSelectionsVar} from "../../../cache";
 import {useConfirm} from "material-ui-confirm";
+import downloadSubmissionData from "./DownloadSubmissionData";
 
 const SubmitApplication = ({rowData}) => {
   const selectedApplication = useReactiveVar(gridSelectionsVar).selectedApplication
@@ -20,17 +21,6 @@ const SubmitApplication = ({rowData}) => {
     }
   })
 
-  const postSubmission = (data) => {
-    confirm({
-      title: error ? 'Submission Failed' : 'Application Submitted!',
-      titleProps: {color: 'red', fontWeight: 'bold'},
-      cancellationButtonProps: {color: 'secondary'},
-      confirmationButtonProps: {autoFocus: true, color: 'update'},
-      confirmationText: 'VIEW SUBMISSION DATA',
-      allowClose: false,
-    }).then((res) => console.log(res, submissionData, 'data', data)).catch(console.log)
-  }
-
   const handleSubmitApp = () => {
     confirm({
       title: 'Confirm Submit Application',
@@ -43,8 +33,22 @@ const SubmitApplication = ({rowData}) => {
     }).then(() => submitApp({variables: {appNumber: selectedApplication[0].id}}))
       .then((r) => {
         setSubmissionData(r.data.submitApplication.query.submittedApplicationByApplicationId);
-        postSubmission(r)
+        postSubmission(r.data)
       }).catch((err) => console.log(err))
+  }
+
+  const postSubmission = (data) => {
+    confirm({
+      title: error ? 'Submission Failed' : 'Application Submitted!',
+      titleProps: {color: 'red', fontWeight: 'bold'},
+      cancellationButtonProps: {color: 'secondary'},
+      confirmationButtonProps: {autoFocus: true, color: 'update'},
+      confirmationText: 'VIEW SUBMISSION DATA',
+      allowClose: false,
+    }).then(() => {
+      console.log(data);
+      downloadSubmissionData(data.submitApplication.query.submittedApplicationByApplicationId)
+    }).catch(console.log)
   }
 
   return (
