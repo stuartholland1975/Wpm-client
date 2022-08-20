@@ -1,16 +1,15 @@
 /** @format */
 
 import React from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import { gridSelectionsVar } from '../../../cache';
-import { usePrevious } from 'react-use';
-import { formatNumberGridTwoDecimals } from '../../../functions/formattingFunctions';
+import {AgGridReact} from 'ag-grid-react';
+import {usePrevious} from 'react-use';
+import {formatNumberGridTwoDecimals} from '../../../functions/formattingFunctions';
 
 const ProjectItemsAvailableForApplicationGrid = ({
-	rowData,
-	setWorksheetData,
-	allWorksheets,
-}) => {
+																									 rowData,
+																									 setWorksheetData,
+																									 allWorksheets,
+																								 }) => {
 	const prevRowData = usePrevious(rowData);
 	const gridRef = React.useRef();
 	const columnDefs = React.useMemo(
@@ -49,7 +48,7 @@ const ProjectItemsAvailableForApplicationGrid = ({
 				filter: 'agNumberColumnFilter',
 			},
 			{
-				field: 'valueComplete',
+				field: 'valueAvailable',
 				headerName: 'Value Available',
 				valueFormatter: formatNumberGridTwoDecimals,
 				type: 'numericColumn',
@@ -103,8 +102,8 @@ const ProjectItemsAvailableForApplicationGrid = ({
 		return [
 			{
 				worksheetReference: 'TOTALS',
-				valueComplete: rowData
-					.map((item) => Number(item.valueComplete))
+				valueAvailable: rowData
+					.map((item) => Number(item.valueAvailable))
 					.reduce((tot, val) => tot + val),
 			},
 		];

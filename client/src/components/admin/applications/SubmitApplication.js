@@ -10,7 +10,7 @@ const SubmitApplication = ({rowData}) => {
   const selectedApplication = useReactiveVar(gridSelectionsVar).selectedApplication
   const isSelected = useReactiveVar(gridSelectionsVar).selectedApplication !== false
   const isSubmitted = useReactiveVar(gridSelectionsVar).selectedApplication[0]?.applicationSubmitted
-  const isValid = rowData.filter(obj => obj.applicationNumber === selectedApplication[0]?.applicationNumber - 1)[0]?.applicationSubmitted
+  const isValid = rowData.filter(obj => obj.applicationNumber === selectedApplication[0]?.applicationNumber - 1)[0]?.applicationSubmitted | selectedApplication[0]?.applicationNumber === 1
   const isOpen = useReactiveVar(gridSelectionsVar).selectedApplication[0]?.applicationOpen
   const confirm = useConfirm()
   const [submissionData, setSubmissionData] = React.useState()

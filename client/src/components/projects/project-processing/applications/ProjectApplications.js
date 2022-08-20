@@ -2,26 +2,28 @@
 
 import React from 'react';
 import ProjectApplicationsGrid from '../../../grids/grids/ProjectApplicationsGrid';
-import ProjectLocationsAvailableForApplicationGrid from '../../../grids/grids/ProjectLocationsAvailableForApplicationGrid';
-import { Box, Button, Grid } from '@mui/material';
+import ProjectLocationsAvailableForApplicationGrid
+  from '../../../grids/grids/ProjectLocationsAvailableForApplicationGrid';
+import {Box, Button} from '@mui/material';
 import ProjectItemsAvailableForApplicationGrid from '../../../grids/grids/ProjectItemsAvailableForApplicationGrid';
-import ProjectWorksheetsAvailableForApplicationGrid from '../../../grids/grids/ProjectWorksheetsAvailableForApplicationGrid';
-import { useParams } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
+import ProjectWorksheetsAvailableForApplicationGrid
+  from '../../../grids/grids/ProjectWorksheetsAvailableForApplicationGrid';
+import {useParams} from 'react-router-dom';
+import {useMutation, useQuery} from '@apollo/client';
 import {
-	GET_PROJECT_ITEMS_AVAILABLE_FOR_APPLICATION,
-	GET_PROJECT_APPLICATION_DETAILS,
+  GET_PROJECT_APPLICATION_DETAILS,
+  GET_PROJECT_ITEMS_AVAILABLE_FOR_APPLICATION,
 } from '../../../../api-calls/queries/applications';
-import { ADD_ITEMS_TO_APPLICATION } from '../../../../api-calls/mutations/project-mutations';
-import { useConfirm } from 'material-ui-confirm';
+import {ADD_ITEMS_TO_APPLICATION} from '../../../../api-calls/mutations/project-mutations';
+import {useConfirm} from 'material-ui-confirm';
 
 const styles = {
-	container: { display: 'flex' },
-	columnContainer: {
-		display: 'flex',
-		flexDirection: 'column',
-		flexGrow: 1,
-	},
+  container: {display: 'flex'},
+  columnContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
+  },
 };
 
 const ProjectApplications = () => {
@@ -41,23 +43,24 @@ const ProjectApplications = () => {
 				setLocationData(
 					data.wpmGraphqlGetLocationsAvailableForApplication.nodes.map(
 						(item) => ({
-							...item,
-							itemsAvailable:
-								data.wpmGraphqlGetItemsAvailableForApplication.nodes.filter(
-									(obj) => obj.sitelocationId === item.id,
-								).length,
-							valueAvailable: item.valueComplete - item.valueApplied,
-						}),
+              ...item,
+              itemsAvailable:
+              data.wpmGraphqlGetItemsAvailableForApplication.nodes.filter(
+                (obj) => obj.sitelocationId === item.id,
+              ).length,
+              valueAvailable: Number(item.valueComplete) - Number(item.valueApplied),
+            }),
 					),
 				);
 				setAllItems(
 					data.wpmGraphqlGetItemsAvailableForApplication.nodes.map((item) => ({
-						...item,
-						worksheetsAvailable:
-							data.wpmGraphqlGetWorksheetsAvailableForApplication.nodes.filter(
-								(obj) => obj.orderdetailId === item.id,
-							).length,
-					})),
+            ...item,
+            worksheetsAvailable:
+            data.wpmGraphqlGetWorksheetsAvailableForApplication.nodes.filter(
+              (obj) => obj.orderdetailId === item.id,
+            ).length,
+            valueAvailable: Number(item.valueComplete) - Number(item.valueApplied),
+          })),
 				);
 				setAllWorksheets(
 					data.wpmGraphqlGetWorksheetsAvailableForApplication.nodes,

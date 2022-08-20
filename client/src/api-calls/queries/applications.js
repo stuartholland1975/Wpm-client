@@ -39,6 +39,7 @@ export const GET_PROJECT_ITEMS_AVAILABLE_FOR_APPLICATION = gql`
                 unitPayableTotal
                 id
                 sitelocationId
+                valueApplied
             }
         }
         wpmGraphqlGetLocationsAvailableForApplication(
