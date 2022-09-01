@@ -1,8 +1,8 @@
 /** @format */
 import React from 'react';
-import { Grid } from '@mui/material';
-import { useQuery } from '@apollo/client';
-import { GET_DASHBOARD_DATA } from '../../api-calls/queries/dashboard';
+import {Grid} from '@mui/material';
+import {useQuery} from '@apollo/client';
+import {GET_DASHBOARD_DATA} from '../../api-calls/queries/dashboard';
 import AreaValuesGrid from '../grids/grids/AreaValuesGrid';
 import AreaValuesChart from '../charts/AreaValuesChart';
 import WorkCompleteByPeriodArea from '../charts/WorkCompleteByPeriodArea';
@@ -50,7 +50,7 @@ const Dashboard = () => {
 			});
 		},
 	});
-	//const { operations, models } = useDashboardFilters();
+
 
 	if (loading) return null;
 	if (error) console.log(error);

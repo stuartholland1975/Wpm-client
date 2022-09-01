@@ -26,21 +26,9 @@ const downloadSubmissionData = (data) => {
   }
 
 
-  // console.log(header, areas, projects, items, locations, worksheets)
   console.log(Object.entries(bookData))
   allDetailsWorkbook(Object.entries(bookData))
 
-  // const headerSheet = utils.json_to_sheet(header)
-  // const areaSheet = utils.json_to_sheet(areas)
-  // const projectSheet = utils.json_to_sheet(projects)
-  // const itemsSheet = utils.json_to_sheet(items)
-  // const locationSheet = utils.json_to_sheet(locations)
-  // const worksheetSheet = utils.json_to_sheet(worksheets)
-
-  // const worksheet = utils.json_to_sheet(headers);
-  //
-  // utils.book_append_sheet(workbook, worksheet, 'Projects' );
-  // return writeFile(workbook, `${appHeader[0].application_reference}.xlsx`);
 };
 
 export default downloadSubmissionData;

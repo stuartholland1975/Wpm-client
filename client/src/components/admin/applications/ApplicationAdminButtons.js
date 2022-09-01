@@ -4,13 +4,10 @@ import DownloadIcon from '@mui/icons-material/Download';
 import CloseCurrentApplication from "./CloseCurrentApplication";
 import ReOpenClosedApplication from "./ReOpenClosedApplication";
 import SubmitApplication from "./SubmitApplication";
-import {useReactiveVar} from "@apollo/client";
-import {gridSelectionsVar} from "../../../cache";
 
 const ApplicationAdminButtons = ({rowData, setRowData}) => {
-  const isSelected = useReactiveVar(gridSelectionsVar).selectedApplication !== false
   return (
-    <Grid container spacing={2} mb={2} mt={1} columns={6}>
+    <Grid container spacing={2} mb={2} mt={1} columns={5}>
       <Grid item={true} xs={1}>
         <CloseCurrentApplication rowData={rowData} setRowData={setRowData}/>
       </Grid>
@@ -43,14 +40,14 @@ const ApplicationAdminButtons = ({rowData, setRowData}) => {
           download submission data
         </Button>
       </Grid>
-      <Grid item={true} xs={1}>
+      {/*  <Grid item={true} xs={1}>
         <Button
           disabled={!isSelected}
           fullWidth={true}
           color='action'>
           view application detail
         </Button>
-      </Grid>
+      </Grid>*/}
     </Grid>
   );
 };

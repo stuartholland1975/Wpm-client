@@ -22,7 +22,6 @@ const AddItemsToLocationForm = ({hideModal}) => {
 	const selectedProject = gridSelectionsVar().selectedOrder;
 	const selectedLocation = gridSelectionsVar().selectedLocation[0];
 	const [itemNumbers, setItemNumbers] = React.useState([]);
-	const [existingItems, setExistingItems] = React.useState([]);
 	const [activityCodes, setActivityCodes] = React.useState([]);
 	const resolver = useYupValidationResolver(projectItemSchema);
 
@@ -36,7 +35,7 @@ const AddItemsToLocationForm = ({hideModal}) => {
 			setItemNumbers(
 				data.orderdetails.nodes.map((x) => parseFloat(x.itemNumber)),
 			);
-			setExistingItems(data.orderdetails.nodes.map((x) => x.id));
+
 		},
 	});
 

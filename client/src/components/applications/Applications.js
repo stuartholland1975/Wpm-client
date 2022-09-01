@@ -5,7 +5,7 @@ import {GET_APPLICATION_HEADERS} from "../../api-calls/queries/applications";
 
 const Applications = () => {
   const [rowData, setRowData] = React.useState([]);
-  const {loading, refetch} = useQuery(GET_APPLICATION_HEADERS, {
+  const {loading} = useQuery(GET_APPLICATION_HEADERS, {
     fetchPolicy: 'network-only',
     notifyOnNetworkStatusChange: true,
     onCompleted: data => setRowData(data.applicationSummaryWithCumulativeValues.nodes)

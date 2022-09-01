@@ -5,7 +5,6 @@ import {AgGridReact} from 'ag-grid-react';
 import {formatDate, formatNumberGridNoDecimals} from '../../../functions/formattingFunctions';
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
-import {GridButton} from "../components/CellRenderers";
 import {useLocation} from "react-router-dom";
 import {gridSelectionsVar} from "../../../cache";
 

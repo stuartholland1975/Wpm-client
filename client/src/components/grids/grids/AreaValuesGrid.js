@@ -3,8 +3,6 @@
 import React from 'react';
 import {AgGridReact} from 'ag-grid-react';
 import {formatNumberNoDecimals} from '../../../functions/formattingFunctions';
-import {useQuery} from '@apollo/client';
-import {GET_AREAS_WITH_VALUES} from '../../../api-calls/queries/misc';
 
 const AreaValuesGrid = ({rowData}) => {
     const gridRef = React.useRef();

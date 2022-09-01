@@ -1,12 +1,12 @@
 /** @format */
 
-import { Button, Grid } from '@mui/material';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {Button, Grid} from '@mui/material';
+import {useLocation, useNavigate, useParams} from 'react-router-dom';
 
 const ProjectProcessingButtons = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
-	const { id } = useParams();
+	const {id} = useParams();
 	return (
 		<Grid container spacing={2} mb={2} mt={1} columns={7}>
 			<Grid item xs={1}>
@@ -48,7 +48,7 @@ const ProjectProcessingButtons = () => {
 					}
 					onClick={() => navigate('applications')}
 				>
-					applications
+					application processing
 				</Button>{' '}
 			</Grid>
 			<Grid item xs={1}>

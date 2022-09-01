@@ -12,7 +12,7 @@ const EditProjectHeader = () => {
 	const selectedProject = useReactiveVar(gridSelectionsVar).selectedOrder;
 	const [showModal, hideModal] = useModal(() => {
 		return (
-			<Dialog open onClose={hideModal} maxWidth='lg'>
+			<Dialog onClose={hideModal} maxWidth='lg' open={true}>
 				<DialogTitle id='id'>
 					<Box display='flex' alignItems='center'>
 						<Box flexGrow={1}>EDIT PROJECT HEADER</Box>
@@ -35,7 +35,7 @@ const EditProjectHeader = () => {
 
 	return (
 		<Button
-			color={'update'}
+			color='update'
 			onClick={showModal}
 			disabled={selectedProject === false}
 			startIcon={<EditIcon/>}>

@@ -13,7 +13,7 @@ const SubmitApplication = ({rowData}) => {
   const isValid = rowData.filter(obj => obj.applicationNumber === selectedApplication[0]?.applicationNumber - 1)[0]?.applicationSubmitted | selectedApplication[0]?.applicationNumber === 1
   const isOpen = useReactiveVar(gridSelectionsVar).selectedApplication[0]?.applicationOpen
   const confirm = useConfirm()
-  const [submissionData, setSubmissionData] = React.useState()
+
   const [submitApp, {error}] = useMutation(SUBMIT_APPLICATION, {
     fetchPolicy: 'network-only',
     onCompleted: () => {
@@ -32,7 +32,7 @@ const SubmitApplication = ({rowData}) => {
       allowClose: false,
     }).then(() => submitApp({variables: {appNumber: selectedApplication[0].id}}))
       .then((r) => {
-        setSubmissionData(r.data.submitApplication.query.submittedApplicationByApplicationId);
+
         postSubmission(r.data)
       }).catch((err) => console.log(err))
   }
