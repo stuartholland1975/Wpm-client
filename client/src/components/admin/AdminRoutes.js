@@ -7,6 +7,7 @@ import ProjectAdmin from './projects/ProjectAdmin';
 import DocumentAdmin from './documents/DocumentAdmin';
 import ImportProjectDetails from './projects/ImportProjectDetails';
 import ApplicationAdmin from "./applications/ApplicationAdmin";
+import PeriodAdmin from "./periods/PeriodAdmin";
 
 const AdminRoutes = () => {
 	return useRoutes([
@@ -27,6 +28,10 @@ const AdminRoutes = () => {
 		{
 			path: 'applications',
 			element: <ApplicationAdmin/>
+		},
+		{
+			path:'periods',
+			element: <PeriodAdmin/>
 		}
 	]);
 };

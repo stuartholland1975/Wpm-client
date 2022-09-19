@@ -72,7 +72,7 @@ const adminItems = {
 		{
 			text: 'PERIODS',
 			icon: <AppsIcon color='contrasting' fontSize='medium' />,
-			path: '/',
+			path: '/admin/periods',
 		},
 		{
 			text: 'APPLICATIONS',
