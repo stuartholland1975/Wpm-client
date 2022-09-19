@@ -1,15 +1,15 @@
 /** @format */
 
 import React from 'react';
-import {AgGridReact} from 'ag-grid-react';
-import {usePrevious} from 'react-use';
-import {formatNumberGridTwoDecimals} from '../../../functions/formattingFunctions';
+import { AgGridReact } from 'ag-grid-react';
+import { usePrevious } from 'react-use';
+import { formatNumberGridTwoDecimals } from '../../../functions/formattingFunctions';
 
 const ProjectItemsAvailableForApplicationGrid = ({
-																									 rowData,
-																									 setWorksheetData,
-																									 allWorksheets,
-																								 }) => {
+	rowData,
+	setWorksheetData,
+	allWorksheets,
+}) => {
 	const prevRowData = usePrevious(rowData);
 	const gridRef = React.useRef();
 	const columnDefs = React.useMemo(
@@ -75,7 +75,7 @@ const ProjectItemsAvailableForApplicationGrid = ({
 				selectedRow.some((item) => item.id === f.orderdetailId),
 			),
 		);
-	}, []);
+	}, [allWorksheets, setWorksheetData]);
 
 	React.useEffect(() => {
 		if (gridRef.current.api) {
