@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Grid } from "@mui/material";
+import {Button, Grid} from "@mui/material";
 import UploadGlobalDocument from "./UploadGlobalDocument";
 import DeleteGlobalDocuments from './DeleteGlobalDocuments';
 

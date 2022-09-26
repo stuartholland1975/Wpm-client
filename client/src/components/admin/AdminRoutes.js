@@ -1,6 +1,6 @@
 /** @format */
 
-import { useRoutes } from 'react-router-dom';
+import {useRoutes} from 'react-router-dom';
 
 import React from 'react';
 import ProjectAdmin from './projects/ProjectAdmin';

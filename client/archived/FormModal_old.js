@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import {Button, Grid} from "@mui/material";
+import {Button} from "@mui/material";
 
 const customStyles = {
     content: {

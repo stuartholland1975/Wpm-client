@@ -1,10 +1,10 @@
 /** @format */
 
 import React from 'react';
-import { AgGridReact } from 'ag-grid-react';
+import {AgGridReact} from 'ag-grid-react';
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
-import { formatNumberGridNoDecimals } from '../../../functions/formattingFunctions';
+import {formatNumberGridNoDecimals} from '../../../functions/formattingFunctions';
 
 const PeriodsGrid = ({ rowData }) => {
 	const columnDefs = React.useMemo(() => [

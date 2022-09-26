@@ -1,10 +1,9 @@
 /** @format */
 
 import React from 'react';
-import { AgGridReact } from 'ag-grid-react';
+import {AgGridReact} from 'ag-grid-react';
 
-import { formatNumberGridTwoDecimals } from '../../../functions/formattingFunctions';
-import { gridSelectionsVar } from '../../../cache';
+import {formatNumberGridTwoDecimals} from '../../../functions/formattingFunctions';
 
 const ProjectLocationsAvailableForApplicationGrid = ({
 	setItemData,

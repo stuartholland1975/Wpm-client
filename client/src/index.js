@@ -1,30 +1,30 @@
 /** @format */
 
-import { ApolloClient, ApolloLink, ApolloProvider } from '@apollo/client';
-import { onError } from 'apollo-link-error';
-import { createUploadLink } from 'apollo-upload-client';
-import { ThemeProvider } from '@mui/material/styles';
-import { DevSupport } from '@react-buddy/ide-toolbox';
+import {ApolloClient, ApolloLink, ApolloProvider} from '@apollo/client';
+import {onError} from 'apollo-link-error';
+import {createUploadLink} from 'apollo-upload-client';
+import {ThemeProvider} from '@mui/material/styles';
+import {DevSupport} from '@react-buddy/ide-toolbox';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
-import { LocalStorageWrapper, persistCache } from 'apollo3-cache-persist';
-import { ConfirmProvider } from 'material-ui-confirm';
+import {LocalStorageWrapper, persistCache} from 'apollo3-cache-persist';
+import {ConfirmProvider} from 'material-ui-confirm';
 import React from 'react';
-import { positions, Provider as AlertProvider } from 'react-alert';
+import {positions, Provider as AlertProvider} from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReactDOM from 'react-dom/client';
 import 'react-image-gallery/styles/css/image-gallery.css';
-import { ModalProvider } from 'react-modal-hook';
-import { BrowserRouter as Router } from 'react-router-dom';
+import {ModalProvider} from 'react-modal-hook';
+import {BrowserRouter as Router} from 'react-router-dom';
 import App from './App';
-import { cache } from './cache';
-import { ComponentPreviews, useInitial } from './dev';
+import {cache} from './cache';
+import {ComponentPreviews, useInitial} from './dev';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { theme } from './theme';
+import {theme} from './theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

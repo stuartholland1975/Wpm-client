@@ -8,7 +8,7 @@ import {useModal} from 'react-modal-hook';
 import {gridSelectionsVar} from '../../../../cache';
 import CreateProjectLocationForm from '../../../forms/locations/CreateProjectLocationForm';
 
-const CreateProjectLocation = () => {
+const CreateProjectLocation = ({id}) => {
 	const selectedLocation = useReactiveVar(gridSelectionsVar).selectedLocation;
 	const [showModal, hideModal] = useModal(() => (
 		<Dialog onClose={hideModal} maxWidth='xl' fullWidth open={true}>
@@ -23,7 +23,7 @@ const CreateProjectLocation = () => {
 				</Box>
 			</DialogTitle>
 
-			<CreateProjectLocationForm hideModal={hideModal}/>
+			<CreateProjectLocationForm hideModal={hideModal} id={id}/>
 		</Dialog>
 	));
 

@@ -1,14 +1,14 @@
 /** @format */
 
-import { useQuery } from '@apollo/client';
-import { CircularProgress } from '@mui/material';
-import { AgGridReact } from 'ag-grid-react';
+import {useQuery} from '@apollo/client';
+import {CircularProgress} from '@mui/material';
+import {AgGridReact} from 'ag-grid-react';
 import React from 'react';
-import { GET_PROJECT_LOCATIONS } from '../../../api-calls/queries/locations';
-import { gridSelectionsVar } from '../../../cache';
-import { formatNumberGridTwoDecimals } from '../../../functions/formattingFunctions';
+import {GET_PROJECT_LOCATIONS} from '../../../api-calls/queries/locations';
+import {gridSelectionsVar} from '../../../cache';
+import {formatNumberGridTwoDecimals} from '../../../functions/formattingFunctions';
 import GridQtyFilter from '../components/GridQtyFilter';
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 
 const ProjectLocationsGrid = () => {
 	const { id } = useParams();

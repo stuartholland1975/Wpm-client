@@ -4,7 +4,6 @@ import React from 'react';
 import {AgGridReact} from 'ag-grid-react';
 import {formatDate} from '../../../functions/formattingFunctions';
 import HyperLink from '../components/Hyperlink';
-import {useParams} from 'react-router-dom';
 
 const ProjectDocumentsGrid = ({rowData}) => {
 	const columnDefs = React.useMemo(

@@ -1,13 +1,13 @@
 /** @format */
 import UploadIcon from '@mui/icons-material/Upload';
-import { Button, Grid } from '@mui/material';
+import {Button, Grid} from '@mui/material';
 import CreateProjectHeader from './CreateProjectHeader';
 import DeleteProjectHeader from './DeleteProjectHeader';
 import EditProjectHeader from './EditProjectHeader';
 import React from 'react';
-import { useReactiveVar } from '@apollo/client';
-import { gridSelectionsVar } from '../../../cache';
-import { useNavigate } from 'react-router-dom';
+import {useReactiveVar} from '@apollo/client';
+import {gridSelectionsVar} from '../../../cache';
+import {useNavigate} from 'react-router-dom';
 
 const ProjectAdminButtons = () => {
 	const navigate = useNavigate();

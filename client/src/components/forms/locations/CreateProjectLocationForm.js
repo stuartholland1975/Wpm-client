@@ -6,24 +6,22 @@ import AddIcon from '@mui/icons-material/Add';
 import React from 'react';
 import {useFieldArray, useForm} from 'react-hook-form';
 import {CREATE_BULK_LOCATIONS} from '../../../api-calls/mutations/project-mutations';
-import {GET_PROJECT_LOCATIONS, READ_LOCATION_REFERENCES,} from '../../../api-calls/queries/locations';
+import {GET_PROJECT_LOCATIONS,} from '../../../api-calls/queries/locations';
 import {gridSelectionsVar} from '../../../cache';
-import * as yup from 'yup';
-import {useYupValidationResolver} from '../components/validation';
 import {GET_SINGLE_PROJECT_HEADER} from '../../../api-calls/queries/projects';
 
-const CreateProjectLocationForm = ({hideModal}) => {
+const CreateProjectLocationForm = ({hideModal, id}) => {
 	const client = useApolloClient();
 	const addLocationButtonRef = React.useRef();
 
 	const selectedProject = gridSelectionsVar().selectedOrder;
 
-	const {sitelocationWithValues} = client.readQuery({
+	/*const {sitelocationWithValues} = client.readQuery({
 		query: READ_LOCATION_REFERENCES,
-		variables: {id: selectedProject.id},
-	});
-
-	const formSchema = {
+		variables: {id:id},
+	});*/
+	console.log(id)
+	/*const formSchema = {
 		reference: yup.string().notOneOf(
 			sitelocationWithValues.nodes.map((x) => x.reference),
 			'Location Reference Already Exists!',
@@ -35,7 +33,7 @@ const CreateProjectLocationForm = ({hideModal}) => {
 	});
 
 	const resolver = useYupValidationResolver(projectLocationSchema);
-
+*/
 	const {
 		watch,
 		register,
@@ -47,7 +45,7 @@ const CreateProjectLocationForm = ({hideModal}) => {
 	} = useForm({
 		defaultValues: {location: [{reference: ''}]},
 		mode: 'onTouched',
-		resolver: resolver,
+	//	resolver: resolver,
 	});
 
 	const {fields, append, remove} = useFieldArray({

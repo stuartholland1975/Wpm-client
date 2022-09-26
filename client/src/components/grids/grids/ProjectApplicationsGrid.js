@@ -1,11 +1,11 @@
 /** @format */
 
 import React from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import { useQuery } from '@apollo/client';
-import { GET_PROJECT_APPLICATION_DETAILS } from '../../../api-calls/queries/applications';
-import { formatNumberGridNoDecimals } from '../../../functions/formattingFunctions';
-import { useParams } from 'react-router-dom';
+import {AgGridReact} from 'ag-grid-react';
+import {useQuery} from '@apollo/client';
+import {GET_PROJECT_APPLICATION_DETAILS} from '../../../api-calls/queries/applications';
+import {formatNumberGridNoDecimals} from '../../../functions/formattingFunctions';
+import {useParams} from 'react-router-dom';
 
 const ProjectApplicationsGrid = () => {
 	const { id } = useParams();

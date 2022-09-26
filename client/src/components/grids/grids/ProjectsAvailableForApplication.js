@@ -1,12 +1,8 @@
 /** @format */
 
 import React from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import {
-	formatNumberGridNoDecimals,
-	formatNumberGridTwoDecimals,
-	divideIfNotZero,
-} from '../../../functions/formattingFunctions';
+import {AgGridReact} from 'ag-grid-react';
+import {formatNumberGridNoDecimals,} from '../../../functions/formattingFunctions';
 
 const ProjectsAvailableForApplication = ({ rowData }) => {
 	const [columnDefs, setColumnDefs] = React.useState([

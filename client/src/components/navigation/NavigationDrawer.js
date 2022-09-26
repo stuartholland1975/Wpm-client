@@ -14,21 +14,12 @@ import HelpIcon from '@mui/icons-material/Help';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
 import StarBorder from '@mui/icons-material/StarBorder';
-import {
-	Box,
-	CssBaseline,
-	Divider,
-	IconButton,
-	List,
-	ListItem,
-	ListItemIcon,
-	ListItemText,
-} from '@mui/material';
+import {Box, CssBaseline, Divider, IconButton, List, ListItem, ListItemIcon, ListItemText,} from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import MuiDrawer from '@mui/material/Drawer';
-import { styled } from '@mui/material/styles';
+import {styled} from '@mui/material/styles';
 import React from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import {Outlet, useNavigate} from 'react-router-dom';
 import LetterM from '../home/letter-m.png';
 import LetterP from '../home/letter-p.png';
 import LetterW from '../home/letter-w.png';

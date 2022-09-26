@@ -1,8 +1,8 @@
 /** @format */
 
 import React from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import { formatNumberNoDecimals } from '../../../functions/formattingFunctions';
+import {AgGridReact} from 'ag-grid-react';
+import {formatNumberNoDecimals} from '../../../functions/formattingFunctions';
 
 const PeriodValuesGrid = ({ rowData }) => {
 	const gridRef = React.useRef();

@@ -2,13 +2,10 @@
 
 import React from 'react';
 import ApplicationsGrid from '../grids/grids/ApplicationsGrid';
-import { useQuery } from '@apollo/client';
-import {
-	GET_APPLICATION_HEADERS,
-	GET_PROJECTS_AVAILABLE_FOR_APPLICATION,
-} from '../../api-calls/queries/applications';
+import {useQuery} from '@apollo/client';
+import {GET_APPLICATION_HEADERS, GET_PROJECTS_AVAILABLE_FOR_APPLICATION,} from '../../api-calls/queries/applications';
 import ProjectsAvailableForApplication from '../grids/grids/ProjectsAvailableForApplication';
-import { Box } from '@mui/material';
+import {Box} from '@mui/material';
 
 const Applications = () => {
 	const [rowData, setRowData] = React.useState([]);

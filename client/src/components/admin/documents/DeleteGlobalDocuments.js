@@ -1,10 +1,10 @@
 import React from 'react';
-import { useMutation, useReactiveVar } from '@apollo/client';
-import { DELETE_GLOBAL_DOCUMENTS } from '../../../api-calls/mutations/project-mutations';
-import { useConfirm } from 'material-ui-confirm';
-import { Button } from '@mui/material';
-import { gridSelectionsVar } from '../../../cache';
-import { GET_GLOBAL_DOCUMENTS } from '../../../api-calls/queries/misc';
+import {useMutation, useReactiveVar} from '@apollo/client';
+import {DELETE_GLOBAL_DOCUMENTS} from '../../../api-calls/mutations/project-mutations';
+import {useConfirm} from 'material-ui-confirm';
+import {Button} from '@mui/material';
+import {gridSelectionsVar} from '../../../cache';
+import {GET_GLOBAL_DOCUMENTS} from '../../../api-calls/queries/misc';
 import DeleteIcon from '@mui/icons-material/Delete'
 
 const DeleteGlobalDocuments = () => {

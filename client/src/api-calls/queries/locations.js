@@ -45,7 +45,7 @@ export const GET_INCOMPLETE_LOCATION_ITEMS = gql`
 `;
 
 export const READ_LOCATION_REFERENCES = gql`
-	query ReadLocationReferences($id: Int!) {
+	query GetLocationReferences($id: Int!) {
 		sitelocationWithValues(filter: { orderheaderId: { equalTo: $id } }) {
 			nodes {
 				reference

@@ -20,7 +20,7 @@ const ProjectLocationsButtons = () => {
   return (
     <Grid container columnSpacing={2} mb={2} mt={2} columns={6}>
       <Grid item xs={true}>
-        <CreateProjectLocation/>
+        <CreateProjectLocation id={id}/>
       </Grid>
       <Grid item xs={true}>
         <AddItemsToLocation/>

@@ -1,5 +1,5 @@
 /** @format */
-import { Outlet, useParams } from 'react-router-dom';
+import {Outlet, useParams} from 'react-router-dom';
 import ProjectProcessingButtons from './ProjectProcessingButtons';
 import ProjectStats from './ProjectStats';
 

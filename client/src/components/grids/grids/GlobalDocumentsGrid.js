@@ -1,14 +1,12 @@
 /** @format */
 
 import React from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import { useQuery } from '@apollo/client';
-import { GET_GLOBAL_DOCUMENTS } from '../../../api-calls/queries/misc';
-import { formatDate } from '../../../functions/formattingFunctions';
+import {AgGridReact} from 'ag-grid-react';
+import {useQuery} from '@apollo/client';
+import {GET_GLOBAL_DOCUMENTS} from '../../../api-calls/queries/misc';
+import {formatDate} from '../../../functions/formattingFunctions';
 import HyperLink from '../components/Hyperlink';
-import { gridSelectionsVar } from '../../../cache';
-import {DefaultColDef} from "../components/defaultColDef";
-
+import {gridSelectionsVar} from '../../../cache';
 
 
 const GlobalDocumentsGrid = () => {

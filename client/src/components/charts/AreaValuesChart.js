@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react';
-import { AgChartsReact } from 'ag-charts-react';
+import {AgChartsReact} from 'ag-charts-react';
 
 const AreaValuesChart = ({ rowData }) => {
 	const barOptions = {

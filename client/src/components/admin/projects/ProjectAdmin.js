@@ -2,7 +2,7 @@
 
 import ProjectHeaders from '../../projects/ProjectHeaders';
 import ProjectAdminButtons from './ProjectAdminButtons';
-import { Outlet } from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 
 const ProjectAdmin = () => {
 	return (

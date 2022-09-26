@@ -6,7 +6,7 @@ import {AgGridReact} from 'ag-grid-react';
 import {useConfirm} from 'material-ui-confirm';
 import React from 'react';
 import {useAlert} from 'react-alert';
-import {useNavigate, useParams } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {v4 as uuidv4} from 'uuid';
 import {CREATE_BULK_WORKSHEETS} from '../../../api-calls/mutations/project-mutations';
 import {GET_INCOMPLETE_LOCATION_ITEMS} from '../../../api-calls/queries/locations';

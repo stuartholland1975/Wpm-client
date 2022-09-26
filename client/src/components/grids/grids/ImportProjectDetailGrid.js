@@ -1,8 +1,7 @@
 /** @format */
 
 import React from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import {CircularProgress} from "@mui/material";
+import {AgGridReact} from 'ag-grid-react';
 
 const ImportProjectDetailGrid = ({ importData }) => {
 	const columnDefs = React.useMemo(() => [

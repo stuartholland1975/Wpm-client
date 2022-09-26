@@ -4,11 +4,10 @@ import {useMutation, useReactiveVar} from '@apollo/client';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Button} from '@mui/material';
 import {useConfirm} from 'material-ui-confirm';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {DELETE_MANY_LOCATIONS} from '../../../../api-calls/mutations/project-mutations';
 import {GET_PROJECT_LOCATIONS} from '../../../../api-calls/queries/locations';
 import {gridSelectionsVar} from '../../../../cache';
-import { useParams } from 'react-router-dom';
 
 const DeleteProjectLocation = () => {
 	const selectedLocation = useReactiveVar(gridSelectionsVar).selectedLocation;

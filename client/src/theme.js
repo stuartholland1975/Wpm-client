@@ -43,7 +43,7 @@ export const theme = createTheme({
 		},
 		cancel: {
 			main: '#404040',
-			contrastText: '#404040',
+			contrastText: '#fff',
 		},
 		info: {
 			main: '#404040',

@@ -1,9 +1,7 @@
 import React from 'react';
 import {Button} from "@mui/material";
 import {useMutation} from "@apollo/client";
-import {
-  AUTO_INCREMENT_APPLICATION
-} from "../../../api-calls/mutations/application-mutations";
+import {AUTO_INCREMENT_APPLICATION} from "../../../api-calls/mutations/application-mutations";
 import {useConfirm} from "material-ui-confirm";
 import {gridSelectionsVar} from "../../../cache";
 

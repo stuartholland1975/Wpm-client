@@ -1,10 +1,10 @@
 /** @format */
 
-import { useQuery } from '@apollo/client';
+import {useQuery} from '@apollo/client';
 import ImageGallery from 'react-image-gallery';
-import { useParams } from 'react-router-dom';
-import { GET_ORDER_IMAGES } from '../../../../api-calls/queries/misc';
-import { formatDate } from '../../../../functions/formattingFunctions';
+import {useParams} from 'react-router-dom';
+import {GET_ORDER_IMAGES} from '../../../../api-calls/queries/misc';
+import {formatDate} from '../../../../functions/formattingFunctions';
 
 const ProjectImages = () => {
 	const { id } = useParams();

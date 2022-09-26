@@ -1,7 +1,7 @@
 /** @format */
 
-import { ImageList, ImageListItemBar, ImageListItem } from '@mui/material';
-import { useEffect } from 'react';
+import {ImageList, ImageListItem, ImageListItemBar} from '@mui/material';
+import {useEffect} from 'react';
 
 const SingleImagePreview = ({
 	file,

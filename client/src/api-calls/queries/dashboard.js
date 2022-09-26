@@ -1,6 +1,6 @@
 /** @format */
 
-import { gql } from '@apollo/client';
+import {gql} from '@apollo/client';
 
 export const GET_DASHBOARD_DATA = gql`
 	query GetDashboardData {

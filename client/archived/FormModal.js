@@ -1,15 +1,8 @@
 /** @format */
 
 import CloseIcon from '@mui/icons-material/Close';
-import {
-	Box,
-	Button,
-	Dialog,
-	DialogContent,
-	DialogTitle,
-	IconButton,
-} from '@mui/material';
-import { useModal } from 'react-modal-hook';
+import {Box, Button, Dialog, DialogContent, DialogTitle, IconButton,} from '@mui/material';
+import {useModal} from 'react-modal-hook';
 
 const FormModal = (props) => {
 	const { title, children, buttonLabel, buttonColor } = props;
