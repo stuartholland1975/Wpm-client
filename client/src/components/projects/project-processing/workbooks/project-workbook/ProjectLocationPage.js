@@ -31,13 +31,12 @@ const ProjectLocationPage = ({projectData}) => {
 				itemCount,
 			},
 			id,
-			itemData: item.sitelocationById.orderdetailWithValues.nodes.map(item => ({
-				itemNumber: item.itemNumber,
-				activityDescription: item.activityDescription,
-				activityCode: item.activityCode,
-				qtyOrdered: formatNumberTwoDecimals(item.qtyOrdered),
-				//	locationValue: formatNumberTwoDecimals(item.valuePayableTotal),
-				qtyOs: formatNumberTwoDecimals(item.qtyOs),
+			itemData: item.sitelocationById.orderdetailWithValues.nodes.map(x => ({
+				itemNumber: x.itemNumber,
+				activityDescription: x.activityDescription,
+				activityCode: x.activityCode,
+				qtyOrdered: formatNumberTwoDecimals(x.qtyOrdered),
+				qtyOs: formatNumberTwoDecimals(x.qtyOs),
 				qtyComplete: '',
 				comments: '',
 			}))
